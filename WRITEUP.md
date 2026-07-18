@@ -2,7 +2,7 @@
 
 ## Tradeoffs Made and Why
 
-**LLM summarization with pre-generated cache**: Clinical summaries are generated via Claude Opus 4.6 with a structured JSON prompt that enforces field requirements (chief concern, diagnoses, labs, anomalies) and a 200-word limit. All 33 patient summaries are pre-generated and included in `data/summaries.json`, so the demo runs without an API key. The summarizer pipeline can regenerate summaries programmatically for new patients or updated records.
+**LLM summarization with caching**: I called the Claude API (`claude-opus-4-6`) with a structured JSON prompt that enforces field requirements (chief concern, diagnoses, labs, anomalies) and a 200-word limit. The generated results are cached in `data/summaries.json` so the demo runs without requiring an API key each time. The summarizer pipeline supports regeneration for new patients or updated records.
 
 **Single-page frontend vs. React SPA**: Chose Vanilla JS + Tailwind CSS CDN over React to eliminate build tooling complexity. For a demo with one search view and one detail panel, the simpler approach reduces setup friction while still delivering real-time search, responsive layout, and accessible markup.
 
