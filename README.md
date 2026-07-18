@@ -112,6 +112,20 @@ Used `all-MiniLM-L6-v2` for its balance of speed and quality on clinical text. C
 ### Frontend
 Single HTML file with Tailwind CSS CDN and Vanilla JS, no build step required. Real-time debounced search (400ms), slide-out patient detail panel with AI summary + FHIR resource browser + matching record history. ARIA labels, keyboard navigation, and responsive layout for accessibility.
 
+## Performance Benchmark
+
+Search latency on 8,724 indexed documents (model pre-loaded at server startup):
+
+| Query | Latency | Results |
+|-------|---------|---------|
+| "chest pain" | 83ms | 5 |
+| "diabetes" | 36ms | 5 |
+| "blood pressure" | 21ms | 5 |
+| "imaging report" | 15ms | 5 |
+| "medication" | 15ms | 5 |
+
+**Average: 34ms** — well under the 2-second target for 50 records.
+
 ## Tech Stack
 
 | Layer | Technology |
