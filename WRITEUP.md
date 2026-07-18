@@ -1,4 +1,4 @@
-# EHR Media Intelligence Platform — Write-up
+# Write-up
 
 ## Tradeoffs Made and Why
 
@@ -32,7 +32,7 @@
 ## How I Validated AI Summary Quality
 
 1. **Structural validation**: Every summary is parsed as JSON with required fields (chief_concern, key_diagnoses, recent_labs, recent_imaging, flagged_anomalies, summary). Missing or malformed fields trigger a retry or fallback.
-2. **Word count enforcement**: The prompt instructs "under 200 words" and the output is verified — maximum observed is 64 words across 33 patients.
+2. **Word count enforcement**: The prompt instructs "under 200 words" and the output is verified. Maximum observed is 64 words across 33 patients.
 3. **Clinical accuracy spot-checks**: Compared generated summaries against source FHIR data for several patients, verifying that diagnoses match encounter reasons, lab values are correctly reported, and no hallucinated conditions appear.
 4. **Anomaly detection validation**: Cross-referenced flagged anomalies against clinical reference ranges. Filtered out non-clinical items (social determinant questionnaires) that were incorrectly flagged as abnormal labs.
 5. **Disclaimer field**: Every summary includes an explicit AI-generated disclaimer: "Not a clinical decision. Must be reviewed by a qualified healthcare provider."
