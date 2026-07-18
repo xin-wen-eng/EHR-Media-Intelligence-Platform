@@ -110,7 +110,7 @@ The primary path calls the Claude API (`claude-sonnet-4-20250514`) with structur
 Used `all-MiniLM-L6-v2` for its balance of speed and quality on clinical text. ChromaDB was chosen over FAISS for its persistent storage and metadata filtering. Both FHIR document text and AI summaries are embedded, so semantic search covers the full patient record. Per-patient deduplication ensures search results show one card per patient with the most recent matching record.
 
 ### Frontend
-Single HTML file with Tailwind CSS CDN and Vanilla JS — no build step required. Real-time debounced search (400ms), slide-out patient detail panel with AI summary + FHIR resource browser + matching record history. ARIA labels, keyboard navigation, and responsive layout for accessibility.
+Single HTML file with Tailwind CSS CDN and Vanilla JS, no build step required. Real-time debounced search (400ms), slide-out patient detail panel with AI summary + FHIR resource browser + matching record history. ARIA labels, keyboard navigation, and responsive layout for accessibility.
 
 ## Tech Stack
 
