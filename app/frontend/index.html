@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EHR Media Intelligence Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .badge-DiagnosticReport { background-color: #dbeafe; color: #1e40af; }
+    .badge-DocumentReference { background-color: #f3e8ff; color: #6b21a8; }
+    .badge-ProgressNote { background-color: #dcfce7; color: #166534; }
+    .badge-DischargeSummary { background-color: #fef3c7; color: #92400e; }
+    .badge-ImagingReport { background-color: #ffe4e6; color: #9f1239; }
+    .badge-AISummary { background-color: #e0e7ff; color: #3730a3; }
+    .score-bar { transition: width 0.3s ease; }
+    #modal-overlay { transition: opacity 0.2s ease; }
+    #modal-panel { transition: transform 0.2s ease; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-xl font-bold text-gray-900">EHR Media Intelligence</h1>
+          <p class="text-sm text-gray-500">AI-powered clinical record search</p>
+        </div>
+        <span class="hidden sm:inline-block text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded">
+          8,724 documents indexed
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-6 sm:px-6" role="main">
+
+    <!-- Search Section -->
+    <section aria-label="Search controls" class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="flex-1 relative">
+          <label for="search-input" class="sr-only">Search patient records</label>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Search records... (e.g., 'heart disease', 'chest imaging', 'diabetes')"
+            aria-label="Search patient records"
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
+          />
+          <kbd class="hidden sm:inline-block absolute right-3 top-2.5 text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded border">Enter</kbd>
+        </div>
+        <button
+          id="search-btn"
+          aria-label="Submit search"
+          class="px-5 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm font-medium transition-colors"
+        >
+          Search
+        </button>
+      </div>
+
+      <!-- Filters -->
+      <div class="flex flex-col sm:flex-row gap-3 mt-3 pt-3 border-t border-gray-100">
+        <div class="flex-1">
+          <label for="filter-type" class="block text-xs font-medium text-gray-500 mb-1">Resource Type</label>
+          <select
+            id="filter-type"
+            aria-label="Filter by resource type"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+          >
+            <option value="">All Types</option>
+            <option value="DiagnosticReport">Diagnostic Report</option>
+            <option value="ProgressNote">Progress Note</option>
+            <option value="DischargeSummary">Discharge Summary</option>
+            <option value="ImagingReport">Imaging Report</option>
+            <option value="AISummary">AI Summary</option>
+          </select>
+        </div>
+        <div class="flex-1">
+          <label for="filter-date-from" class="block text-xs font-medium text-gray-500 mb-1">Date From</label>
+          <input
+            id="filter-date-from"
+            type="date"
+            aria-label="Filter by start date"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+        </div>
+        <div class="flex-1">
+          <label for="filter-date-to" class="block text-xs font-medium text-gray-500 mb-1">Date To</label>
+          <input
+            id="filter-date-to"
+            type="date"
+            aria-label="Filter by end date"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Status Bar -->
+    <div id="status-bar" class="mb-4 text-sm text-gray-500 flex items-center justify-between" aria-live="polite">
+      <span id="status-text">Enter a query to search patient records.</span>
+      <span id="elapsed-time" class="text-xs text-gray-400"></span>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="hidden text-center py-12" role="status" aria-label="Loading results">
+      <div class="inline-block w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+      <p class="mt-3 text-sm text-gray-500">Searching records...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-12">
+      <svg class="mx-auto h-12 w-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+      <p class="mt-3 text-sm text-gray-500">No results found. Try a different query or adjust filters.</p>
+    </div>
+
+    <!-- Results -->
+    <div id="results" class="space-y-3" role="list" aria-label="Search results"></div>
+  </main>
+
+  <!-- Patient Detail Modal -->
+  <div id="modal-overlay" class="fixed inset-0 bg-black/50 z-40 hidden opacity-0" aria-hidden="true"></div>
+  <div
+    id="modal-panel"
+    class="fixed inset-y-0 right-0 w-full sm:w-[540px] bg-white shadow-xl z-50 hidden translate-x-full overflow-y-auto"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Patient detail"
+  >
+    <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+      <h2 id="modal-title" class="text-lg font-semibold text-gray-900">Patient Detail</h2>
+      <button
+        id="modal-close"
+        aria-label="Close patient detail"
+        class="p-1 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 focus:ring-2 focus:ring-blue-500"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="modal-content" class="p-6"></div>
+  </div>
+
+  <script>
+    const API = '';
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const filterType = document.getElementById('filter-type');
+    const filterDateFrom = document.getElementById('filter-date-from');
+    const filterDateTo = document.getElementById('filter-date-to');
+    const resultsDiv = document.getElementById('results');
+    const loading = document.getElementById('loading');
+    const emptyState = document.getElementById('empty-state');
+    const statusText = document.getElementById('status-text');
+    const elapsedTime = document.getElementById('elapsed-time');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalPanel = document.getElementById('modal-panel');
+    const modalClose = document.getElementById('modal-close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+
+    // Search
+    async function doSearch() {
+      const query = searchInput.value.trim();
+      if (!query) return;
+
+      resultsDiv.innerHTML = '';
+      emptyState.classList.add('hidden');
+      loading.classList.remove('hidden');
+      statusText.textContent = 'Searching...';
+      elapsedTime.textContent = '';
+
+      const body = { query, n_results: 10 };
+      if (filterType.value) body.resource_type = filterType.value;
+      if (filterDateFrom.value) body.date_from = filterDateFrom.value;
+      if (filterDateTo.value) body.date_to = filterDateTo.value;
+
+      try {
+        const res = await fetch(`${API}/search`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        loading.classList.add('hidden');
+
+        if (data.results.length === 0) {
+          emptyState.classList.remove('hidden');
+          statusText.textContent = `No results for "${query}"`;
+          return;
+        }
+
+        statusText.textContent = `${data.total} results for "${query}"`;
+        elapsedTime.textContent = `${data.elapsed_ms.toFixed(0)}ms`;
+        renderResults(data.results);
+      } catch (err) {
+        loading.classList.add('hidden');
+        statusText.textContent = 'Search failed. Is the server running?';
+        console.error(err);
+      }
+    }
+
+    searchBtn.addEventListener('click', doSearch);
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // Real-time debounced search (paused while modal is open)
+    let debounceTimer = null;
+    let modalOpen = false;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      if (searchInput.value.trim().length >= 2 && !modalOpen) {
+        debounceTimer = setTimeout(doSearch, 400);
+      }
+    });
+    filterType.addEventListener('change', () => { if (searchInput.value.trim()) doSearch(); });
+    filterDateFrom.addEventListener('change', () => { if (searchInput.value.trim()) doSearch(); });
+    filterDateTo.addEventListener('change', () => { if (searchInput.value.trim()) doSearch(); });
+
+    // Render result cards
+    function renderResults(results) {
+      resultsDiv.innerHTML = '';
+      results.forEach((r, i) => {
+        const card = document.createElement('div');
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', `Result ${i + 1}: ${r.patient_mrn}, ${r.resource_type}`);
+        card.className = 'bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none';
+
+        const scorePercent = Math.round(r.relevance_score * 100);
+        const scoreColor = scorePercent > 50 ? 'bg-green-500' : scorePercent > 30 ? 'bg-yellow-500' : 'bg-gray-400';
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap mb-1">
+                <span class="font-semibold text-sm text-gray-900">${r.patient_name ? escapeHtml(r.patient_name) : r.patient_mrn}</span>
+                <span class="text-xs text-gray-400">${r.patient_mrn}</span>
+                <span class="badge-${r.resource_type} text-xs font-medium px-2 py-0.5 rounded-full">${formatType(r.resource_type)}</span>
+                ${r.date ? `<span class="text-xs text-gray-400">${r.date}</span>` : ''}
+              </div>
+              ${r.summary_snippet ? `<p class="text-sm text-blue-700 bg-blue-50 px-2 py-1 rounded line-clamp-2 mb-1"><span class="font-medium">AI Summary:</span> ${escapeHtml(r.summary_snippet)}</p>` : ''}
+              <p class="text-xs text-gray-500 line-clamp-1">${escapeHtml(r.text.substring(0, 150))}...</p>
+              ${r.match_count > 1 ? `<span class="text-xs text-blue-500 mt-1 inline-block">${r.match_count} matching records</span>` : ''}
+            </div>
+            <div class="text-right flex-shrink-0 w-16">
+              <div class="text-xs font-medium text-gray-500 mb-1">${scorePercent}%</div>
+              <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <div class="score-bar h-full ${scoreColor} rounded-full" style="width: ${scorePercent}%"></div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => openPatientDetail(r.patient_mrn));
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openPatientDetail(r.patient_mrn);
+          }
+        });
+
+        resultsDiv.appendChild(card);
+      });
+    }
+
+    function formatType(type) {
+      const map = {
+        DiagnosticReport: 'Lab Report',
+        DocumentReference: 'Document',
+        ProgressNote: 'Progress Note',
+        DischargeSummary: 'Discharge Summary',
+        ImagingReport: 'Imaging',
+        AISummary: 'AI Summary',
+      };
+      return map[type] || type;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Patient Detail Modal
+    async function openPatientDetail(mrn) {
+      const currentQuery = searchInput.value.trim();
+      modalTitle.textContent = mrn;
+      modalContent.innerHTML = '<div class="text-center py-8"><div class="inline-block w-6 h-6 border-3 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div><p class="mt-2 text-sm text-gray-500">Loading...</p></div>';
+
+      modalOpen = true;
+      modalOverlay.classList.remove('hidden');
+      modalPanel.classList.remove('hidden');
+      modalOverlay.setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => {
+        modalOverlay.classList.remove('opacity-0');
+        modalPanel.classList.remove('translate-x-full');
+      });
+
+      try {
+        const [summaryRes, bundleRes, recordsRes] = await Promise.all([
+          fetch(`${API}/patients/${mrn}/summary`),
+          fetch(`${API}/patients/${mrn}/bundle`),
+          currentQuery ? fetch(`${API}/patients/${mrn}/records?query=${encodeURIComponent(currentQuery)}`) : Promise.resolve(null),
+        ]);
+        const summary = await summaryRes.json();
+        const bundle = await bundleRes.json();
+        const recordsData = recordsRes ? await recordsRes.json() : { records: [] };
+
+        let html = '';
+
+        // AI Summary
+        if (summary.summary) {
+          html += `
+            <div class="mb-6">
+              <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                AI Clinical Summary
+              </h3>
+              <div class="bg-blue-50 rounded-lg p-4 text-sm space-y-2">
+                <div><span class="font-medium text-gray-700">Chief Concern:</span> <span class="text-gray-900">${escapeHtml(summary.chief_concern || 'N/A')}</span></div>
+                <div>
+                  <span class="font-medium text-gray-700">Diagnoses:</span>
+                  <div class="flex flex-wrap gap-1 mt-1">
+                    ${(summary.key_diagnoses || []).map(d => `<span class="bg-white text-xs px-2 py-0.5 rounded border text-gray-700">${escapeHtml(d)}</span>`).join('')}
+                  </div>
+                </div>
+                ${(summary.recent_labs || []).length > 0 ? `
+                <div>
+                  <span class="font-medium text-gray-700">Recent Labs:</span>
+                  <ul class="mt-1 text-xs text-gray-600 space-y-0.5">
+                    ${summary.recent_labs.slice(0, 5).map(l => `<li>- ${escapeHtml(l)}</li>`).join('')}
+                  </ul>
+                </div>` : ''}
+                ${(summary.flagged_anomalies || []).length > 0 ? `
+                <div>
+                  <span class="font-medium text-red-600">Flagged Anomalies:</span>
+                  <ul class="mt-1 text-xs text-red-600 space-y-0.5">
+                    ${summary.flagged_anomalies.slice(0, 3).map(a => `<li>- ${escapeHtml(a.substring(0, 100))}</li>`).join('')}
+                  </ul>
+                </div>` : ''}
+                <p class="text-gray-700 mt-2">${escapeHtml(summary.summary || '')}</p>
+              </div>
+              <p class="mt-2 text-xs text-amber-600 bg-amber-50 px-3 py-1.5 rounded" role="alert">
+                ${escapeHtml(summary.disclaimer || '')}
+              </p>
+            </div>
+          `;
+        }
+
+        // FHIR Resources — grouped list
+        if (bundle.entry) {
+          const grouped = {};
+          bundle.entry.forEach(e => {
+            const r = e.resource || {};
+            const t = r.resourceType || 'Unknown';
+            if (!grouped[t]) grouped[t] = [];
+            grouped[t].push(r);
+          });
+
+          html += `
+            <div class="mb-6">
+              <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                Linked FHIR Resources (${bundle.entry.length})
+              </h3>
+              <div class="space-y-2">
+                ${Object.entries(grouped).map(([type, resources]) => {
+                  const items = resources.map(r => {
+                    let preview = '', detail = '';
+                    if (type === 'Encounter') {
+                      const date = (r.actualPeriod?.start || '').substring(0, 10);
+                      const reason = (r.reason || []).map(rn => (rn.use || []).map(u => u.concept?.text || '').join('')).join(', ') || 'General';
+                      const cls = (r.class_fhir || []).map(c => c.coding?.[0]?.display || '').join(', ');
+                      preview = '<span class="text-gray-700">' + escapeHtml(reason) + '</span> <span class="text-gray-400 ml-auto text-xs">' + date + '</span>';
+                      detail = '<div class="text-xs text-gray-600 space-y-1">'
+                        + '<div><b>Date:</b> ' + date + '</div>'
+                        + '<div><b>Class:</b> ' + escapeHtml(cls || 'N/A') + '</div>'
+                        + '<div><b>Reason:</b> ' + escapeHtml(reason) + '</div>'
+                        + '<div><b>Status:</b> ' + (r.status || 'N/A') + '</div>'
+                        + '</div>';
+                    } else if (type === 'DiagnosticReport') {
+                      const date = (r.effectiveDateTime || '').substring(0, 10);
+                      const name = r.code?.text || 'Lab';
+                      const conclusion = r.conclusion || '';
+                      preview = '<span class="text-gray-700 font-medium">' + escapeHtml(name) + '</span> <span class="text-gray-400 ml-auto text-xs">' + date + '</span>';
+                      detail = '<div class="text-xs text-gray-600 space-y-1">'
+                        + '<div><b>Test:</b> ' + escapeHtml(name) + '</div>'
+                        + '<div><b>Date:</b> ' + date + '</div>'
+                        + '<div><b>Conclusion:</b> ' + escapeHtml(conclusion || 'N/A') + '</div>'
+                        + '<div><b>Status:</b> ' + (r.status || 'N/A') + '</div>'
+                        + '</div>';
+                    } else if (type === 'DocumentReference') {
+                      const date = (r.date || '').substring(0, 10);
+                      const docType = r.type?.text || 'Document';
+                      preview = '<span class="text-gray-700">' + escapeHtml(docType) + '</span> <span class="text-gray-400 ml-auto text-xs">' + date + '</span>';
+                      let docText = '';
+                      try { docText = atob((r.content||[])[0]?.attachment?.data || ''); } catch(e) {}
+                      detail = '<div class="text-xs text-gray-600 space-y-1">'
+                        + '<div><b>Type:</b> ' + escapeHtml(docType) + '</div>'
+                        + '<div><b>Date:</b> ' + date + '</div>'
+                        + (docText ? '<div class="mt-1 bg-white p-2 rounded border border-gray-100 whitespace-pre-wrap break-words max-h-40 overflow-y-auto">' + escapeHtml(docText.substring(0, 500)) + (docText.length > 500 ? '...' : '') + '</div>' : '')
+                        + '</div>';
+                    } else if (type === 'Patient') {
+                      const nm = (r.name || [{}])[0];
+                      const fullName = ((nm.given || []).join(' ') + ' ' + (nm.family || '')).trim();
+                      preview = '<span class="font-medium text-gray-700">' + escapeHtml(fullName) + '</span>';
+                      detail = '<div class="text-xs text-gray-600 space-y-1">'
+                        + '<div><b>Name:</b> ' + escapeHtml(fullName) + '</div>'
+                        + '<div><b>Gender:</b> ' + (r.gender || 'N/A') + '</div>'
+                        + '<div><b>DOB:</b> ' + (r.birthDate || 'N/A') + '</div>'
+                        + '<div><b>MRN:</b> ' + ((r.identifier||[])[0]?.value || 'N/A') + '</div>'
+                        + '</div>';
+                    } else {
+                      preview = '<span class="text-gray-500">' + (r.id || type) + '</span>';
+                      detail = '<pre class="text-xs text-gray-500 whitespace-pre-wrap break-words max-h-32 overflow-y-auto">' + escapeHtml(JSON.stringify(r, null, 2).substring(0, 300)) + '</pre>';
+                    }
+                    return '<details class="border-b border-gray-100">'
+                      + '<summary class="flex items-center gap-2 py-1.5 cursor-pointer text-xs hover:bg-gray-100 rounded">' + preview + '</summary>'
+                      + '<div class="pb-2 pl-2">' + detail + '</div></details>';
+                  }).join('');
+                  return '<details class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">' +
+                    '<summary class="px-3 py-2 cursor-pointer flex justify-between items-center text-sm hover:bg-gray-100"><span class="font-medium text-gray-700">' + type + '</span><span class="text-xs text-gray-400">' + resources.length + '</span></summary>' +
+                    '<div class="px-3 pb-2 max-h-80 overflow-y-auto">' + items + '</div></details>';
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        // Matching Records (history)
+        if (recordsData.records && recordsData.records.length > 0) {
+          html += `
+            <div class="mt-6">
+              <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                Matching Records for "${escapeHtml(currentQuery)}" (${recordsData.records.length})
+              </h3>
+              <div class="space-y-2">
+                ${recordsData.records.map(rec => {
+                  const preview = rec.text.substring(0, 80).replace(/\n/g, ' ');
+                  return `
+                  <details class="group bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">
+                    <summary class="px-3 py-2 cursor-pointer text-sm hover:bg-gray-100 rounded-lg">
+                      <div class="flex items-center justify-between gap-2 mb-1">
+                        <div class="flex items-center gap-2">
+                          <span class="badge-${rec.resource_type} text-xs font-medium px-2 py-0.5 rounded-full">${formatType(rec.resource_type)}</span>
+                          <span class="text-gray-500 text-xs">${rec.date || 'N/A'}</span>
+                        </div>
+                        <span class="text-xs text-gray-400">${Math.round(rec.relevance_score * 100)}%</span>
+                      </div>
+                      <p class="text-xs text-gray-500 truncate group-open:hidden">${escapeHtml(preview)}...</p>
+                    </summary>
+                    <div class="px-3 pb-3 text-xs text-gray-600 border-t border-gray-100 break-words whitespace-pre-wrap">${escapeHtml(rec.text)}</div>
+                  </details>`;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        modalContent.innerHTML = html;
+      } catch (err) {
+        modalContent.innerHTML = '<p class="text-sm text-red-500">Failed to load patient details.</p>';
+        console.error(err);
+      }
+    }
+
+    function closeModal() {
+      modalOpen = false;
+      modalOverlay.classList.add('opacity-0');
+      modalPanel.classList.add('translate-x-full');
+      setTimeout(() => {
+        modalOverlay.classList.add('hidden');
+        modalPanel.classList.add('hidden');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+      }, 200);
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
