@@ -17,6 +17,8 @@ MODEL_NAME = "all-MiniLM-L6-v2"
 CHROMA_DIR = Path(__file__).parent.parent.parent / "data" / "chroma"
 
 _model_cache: SentenceTransformer | None = None
+_chroma_client = None
+_collection_cache = None
 
 
 def get_model() -> SentenceTransformer:
@@ -27,15 +29,21 @@ def get_model() -> SentenceTransformer:
 
 
 def get_chroma_client() -> chromadb.PersistentClient:
-    CHROMA_DIR.mkdir(parents=True, exist_ok=True)
-    return chromadb.PersistentClient(path=str(CHROMA_DIR))
+    global _chroma_client
+    if _chroma_client is None:
+        CHROMA_DIR.mkdir(parents=True, exist_ok=True)
+        _chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+    return _chroma_client
 
 
 def get_collection(client: chromadb.PersistentClient) -> chromadb.Collection:
-    return client.get_or_create_collection(
-        name="ehr_documents",
-        metadata={"hnsw:space": "cosine"},
-    )
+    global _collection_cache
+    if _collection_cache is None:
+        _collection_cache = client.get_or_create_collection(
+            name="ehr_documents",
+            metadata={"hnsw:space": "cosine"},
+        )
+    return _collection_cache
 
 
 def extract_patient_name(bundle: dict) -> str:
@@ -113,6 +121,8 @@ def build_index():
     client = get_chroma_client()
 
     # Delete existing collection to rebuild
+    global _collection_cache
+    _collection_cache = None
     try:
         client.delete_collection("ehr_documents")
     except Exception:
