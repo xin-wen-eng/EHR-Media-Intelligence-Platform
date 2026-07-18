@@ -28,11 +28,15 @@ def get_model() -> SentenceTransformer:
     return _model_cache
 
 
-def get_chroma_client() -> chromadb.PersistentClient:
+def get_chroma_client():
     global _chroma_client
     if _chroma_client is None:
         CHROMA_DIR.mkdir(parents=True, exist_ok=True)
-        _chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+        try:
+            _chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+        except (ValueError, KeyError):
+            chromadb.api.shared_system_client.SharedSystemClient._identifier_to_system.clear()
+            _chroma_client = chromadb.PersistentClient(path=str(CHROMA_DIR))
     return _chroma_client
 
 

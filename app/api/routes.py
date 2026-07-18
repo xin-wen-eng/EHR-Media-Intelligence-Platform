@@ -13,14 +13,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from app.search.embedder import get_model, search
+from app.search.embedder import get_model, get_chroma_client, search
 from app.db.store import FHIRStore
 from app.summarizer.cache import SummaryCache
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    get_model()  # pre-load on startup
+    get_model()
+    get_chroma_client()
     yield
 
 

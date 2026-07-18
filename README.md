@@ -70,9 +70,10 @@ uvicorn app.api.routes:app --reload --port 8000
 pytest
 ```
 
-57 tests across two suites:
+75 tests across three suites:
 - `test_cleaning.py` — 41 tests covering date normalization, gender codes, MRN formats, duplicate detection, missing fields
 - `test_fhir.py` — 16 tests covering FHIR resource mapping, Bundle generation, validation, SQLite storage
+- `test_api.py` — 18 integration tests covering API endpoints, search quality, per-patient dedup, performance
 
 ## Project Structure
 
@@ -137,4 +138,4 @@ Search latency on 8,724 indexed documents (model pre-loaded at server startup):
 | Vector Store | ChromaDB (persistent, cosine similarity) |
 | Database | SQLite (FHIR bundles + summary cache) |
 | Frontend | Vanilla JS, Tailwind CSS, Fetch API |
-| Testing | pytest (57 tests) |
+| Testing | pytest (75 tests) |

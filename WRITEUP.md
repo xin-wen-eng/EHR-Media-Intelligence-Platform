@@ -17,7 +17,7 @@
 - **Pagination**: The matching records endpoint returns all results at once. For patients with hundreds of records, server-side pagination with cursor-based navigation would improve performance.
 - **Search relevance tuning**: The current cosine similarity on `all-MiniLM-L6-v2` embeddings works well for general queries but could be improved with a clinical-specific model (e.g., BioClinicalBERT) or hybrid BM25 + vector search.
 - **Authentication & RBAC**: No auth layer exists. In production, clinician identity and role-based access control would be essential for HIPAA compliance.
-- **Integration tests**: Current tests cover ingestion cleaning and FHIR mapping. I'd add API endpoint tests, search result quality tests, and end-to-end pipeline tests.
+- **End-to-end tests**: Current tests cover ingestion, FHIR mapping, API endpoints, and search quality. I'd add browser-level E2E tests with Playwright for frontend interactions.
 - **Streaming summaries**: LLM summarization could stream results to the frontend for faster perceived latency.
 - **Batch embedding**: Currently re-embeds everything on index rebuild. Incremental indexing (only new/changed documents) would be more efficient.
 
