@@ -273,6 +273,8 @@ def build_patient_bundle(
         ))
 
     for lab in labs:
+        if lab.category and lab.category not in ("laboratory",):
+            continue
         enc_ref = encounter_map.get(lab.encounter_id)
         fhir_report = map_diagnostic_report(lab, patient_ref, enc_ref)
         entries.append(BundleEntry(

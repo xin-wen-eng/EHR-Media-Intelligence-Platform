@@ -105,7 +105,7 @@ Used Synthea to generate realistic synthetic patient records with varied clinica
 Chose `fhir.resources` v8 (FHIR R5-compatible) over `fhirclient` for its Pydantic v2 integration and strict schema validation. All resources are validated via `model_validate()` round-trip. Four resource types are mapped: Patient, Encounter, DiagnosticReport, and DocumentReference.
 
 ### Dual Summary Pipeline
-The primary path calls the Claude API (`claude-sonnet-4-20250514`) with structured JSON output for production-quality summaries. A secondary rule-based generator (`scripts/generate_summaries.py`) extracts summaries from FHIR data without an API key, enabling the full pipeline to run without credentials. Both paths populate the same SQLite cache.
+The primary path calls the Claude API (`claude-opus-4-6`) with structured JSON output for production-quality summaries. A secondary rule-based generator (`scripts/generate_summaries.py`) extracts summaries from FHIR data without an API key, enabling the full pipeline to run without credentials. Both paths populate the same SQLite cache.
 
 ### Embedding & Search
 Used `all-MiniLM-L6-v2` for its balance of speed and quality on clinical text. ChromaDB was chosen over FAISS for its persistent storage and metadata filtering. Both FHIR document text and AI summaries are embedded, so semantic search covers the full patient record. Per-patient deduplication ensures search results show one card per patient with the most recent matching record.
@@ -115,7 +115,7 @@ Single HTML file with Tailwind CSS CDN and Vanilla JS, no build step required. R
 
 ## Performance Benchmark
 
-Search latency on 8,724 indexed documents (model pre-loaded at server startup):
+Search latency on 4,270 indexed documents (model pre-loaded at server startup):
 
 | Query | Latency | Results |
 |-------|---------|---------|
@@ -133,7 +133,7 @@ Search latency on 8,724 indexed documents (model pre-loaded at server startup):
 |-------|-----------|
 | Backend | Python 3.11+, FastAPI, Pydantic v2 |
 | FHIR | fhir.resources v8 (R5-compatible, R4 resource types) |
-| AI | Claude API (claude-sonnet-4-20250514) |
+| AI | Claude API (claude-opus-4-6) |
 | Embeddings | sentence-transformers (all-MiniLM-L6-v2) |
 | Vector Store | ChromaDB (persistent, cosine similarity) |
 | Database | SQLite (FHIR bundles + summary cache) |
