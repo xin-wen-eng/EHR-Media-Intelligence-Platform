@@ -1,0 +1,714 @@
+[
+  {
+    "patient_mrn": "MRN-0018FC7C",
+    "chief_concern": "Normal pregnancy",
+    "key_diagnoses": [
+      "Normal pregnancy"
+    ],
+    "recent_labs": [
+      "BMI: 26.4 kg/m2",
+      "Systolic BP: 132.0 mm[Hg]",
+      "Diastolic BP: 78.0 mm[Hg]"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "19-year-old female with recent pregnancy history including prenatal care and delivery.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-0019D72E",
+    "chief_concern": "Ischemic heart disease",
+    "key_diagnoses": [
+      "Ischemic heart disease",
+      "Laceration - injury"
+    ],
+    "recent_labs": [
+      "BMI: 28.5 kg/m2",
+      "Systolic BP: 108.0 mm[Hg]",
+      "Diastolic BP: 70.0 mm[Hg]",
+      "Total cholesterol: 153.4 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "65-year-old female with Ischemic heart disease, Laceration - injury.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-002ABD5A",
+    "chief_concern": "Hyperlipidemia",
+    "key_diagnoses": [
+      "Hyperlipidemia",
+      "Acute viral pharyngitis",
+      "Loss of teeth"
+    ],
+    "recent_labs": [
+      "BMI: 27.3 kg/m2",
+      "Systolic BP: 108.0 mm[Hg]",
+      "Diastolic BP: 81.0 mm[Hg]",
+      "WBC: 4.1 10*3/uL",
+      "Hemoglobin: 15.2 g/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "69-year-old male with Hyperlipidemia, Acute viral pharyngitis, Loss of teeth.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-006A0FBB",
+    "chief_concern": "Routine health maintenance",
+    "key_diagnoses": [
+      "Routine health maintenance"
+    ],
+    "recent_labs": [
+      "Systolic BP: 118.0 mm[Hg]",
+      "Diastolic BP: 67.0 mm[Hg]",
+      "WBC: 7.5 10*3/uL",
+      "Hemoglobin: 14.1 g/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "0-year-old female presenting for routine well-child visits and age-appropriate screening.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-006C1116",
+    "chief_concern": "Viral sinusitis",
+    "key_diagnoses": [
+      "Sinusitis",
+      "Viral sinusitis",
+      "Acute bronchitis"
+    ],
+    "recent_labs": [
+      "BMI: 30.5 kg/m2",
+      "Systolic BP: 115.0 mm[Hg]",
+      "Diastolic BP: 72.0 mm[Hg]"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "obese BMI (30.5 kg/m2)"
+    ],
+    "summary": "45-year-old male with Sinusitis, Viral sinusitis, Acute bronchitis. Notable findings include obese BMI (30.5 kg/m2).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-00D79454",
+    "chief_concern": "Contraception care",
+    "key_diagnoses": [
+      "Viral sinusitis",
+      "Contraception care"
+    ],
+    "recent_labs": [
+      "BMI: 37.0 kg/m2",
+      "Systolic BP: 122.0 mm[Hg]",
+      "Diastolic BP: 91.0 mm[Hg]"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "obese BMI (37.0 kg/m2)",
+      "elevated diastolic BP (91.0 mm[Hg])"
+    ],
+    "summary": "Female patient with Viral sinusitis, Contraception care. Notable findings include obese BMI (37.0 kg/m2), elevated diastolic BP (91.0 mm[Hg]).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-00D8E52A",
+    "chief_concern": "Osteoarthritis of hip",
+    "key_diagnoses": [
+      "Osteoarthritis of hip"
+    ],
+    "recent_labs": [
+      "HbA1c: 5.9 %",
+      "BMI: 30.3 kg/m2",
+      "Systolic BP: 142.0 mm[Hg]",
+      "Diastolic BP: 83.0 mm[Hg]",
+      "Glucose: 93.5 mg/dL",
+      "Creatinine: 1.1 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (5.9 %)",
+      "obese BMI (30.3 kg/m2)",
+      "elevated systolic BP (142.0 mm[Hg])"
+    ],
+    "summary": "51-year-old male with Osteoarthritis of hip. Notable findings include elevated HbA1c (5.9 %), obese BMI (30.3 kg/m2), elevated systolic BP (142.0 mm[Hg]).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-00E140FD",
+    "chief_concern": "Hyperlipidemia",
+    "key_diagnoses": [
+      "Hyperlipidemia",
+      "Patient transfer to skilled nursing facility"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.8 %",
+      "BMI: 27.3 kg/m2",
+      "Systolic BP: 101.0 mm[Hg]",
+      "Diastolic BP: 89.0 mm[Hg]",
+      "Glucose: 121.0 mg/dL"
+    ],
+    "recent_imaging": [
+      "Ophthalmic examination performed"
+    ],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.8 %)",
+      "elevated fasting glucose (121.0 mg/dL)"
+    ],
+    "summary": "67-year-old male with Hyperlipidemia, Patient transfer to skilled nursing facility. Notable findings include elevated HbA1c (6.8 %), elevated fasting glucose (121.0 mg/dL).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-0213B533",
+    "chief_concern": "Viral sinusitis",
+    "key_diagnoses": [
+      "Essential hypertension",
+      "Viral sinusitis"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.1 %",
+      "BMI: 28.0 kg/m2",
+      "Systolic BP: 151.0 mm[Hg]",
+      "Diastolic BP: 94.0 mm[Hg]",
+      "Glucose: 96.6 mg/dL",
+      "Creatinine: 1.0 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.1 %)",
+      "elevated systolic BP (151.0 mm[Hg])",
+      "elevated diastolic BP (94.0 mm[Hg])"
+    ],
+    "summary": "53-year-old female with Essential hypertension, Viral sinusitis. Notable findings include elevated HbA1c (6.1 %), elevated systolic BP (151.0 mm[Hg]), elevated diastolic BP (94.0 mm[Hg]).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-1013DB99",
+    "chief_concern": "Normal pregnancy",
+    "key_diagnoses": [
+      "Viral sinusitis",
+      "Normal pregnancy"
+    ],
+    "recent_labs": [
+      "BMI: 25.0 kg/m2",
+      "Systolic BP: 137.0 mm[Hg]",
+      "Diastolic BP: 71.0 mm[Hg]"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "20-year-old female with recent pregnancy history including prenatal care and delivery.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-1525EC8D",
+    "chief_concern": "Viral sinusitis",
+    "key_diagnoses": [
+      "Viral sinusitis",
+      "Chronic pain"
+    ],
+    "recent_labs": [
+      "Body Height: 172.5 cm",
+      "Body Weight: 84.7 kg"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "27-year-old male with Viral sinusitis, Chronic pain.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-1CA4F945",
+    "chief_concern": "Viral sinusitis",
+    "key_diagnoses": [
+      "Acute ST segment elevation myocardial infarction",
+      "Impacted molars",
+      "Myocardial infarction",
+      "Viral sinusitis"
+    ],
+    "recent_labs": [
+      "WBC: 3.2 10*3/uL",
+      "Hemoglobin: 12.0 g/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "low WBC (3.2 10*3/uL)"
+    ],
+    "summary": "63-year-old patient with history of acute myocardial infarction requiring hospitalization. Notable findings include low WBC (3.2 10*3/uL).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-2193BB47",
+    "chief_concern": "Viral sinusitis",
+    "key_diagnoses": [
+      "Viral sinusitis",
+      "Anemia",
+      "Chronic pain",
+      "Sprain"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.2 %",
+      "BMI: 30.0 kg/m2",
+      "Systolic BP: 100.0 mm[Hg]",
+      "Diastolic BP: 82.0 mm[Hg]",
+      "Glucose: 94.8 mg/dL",
+      "Creatinine: 1.3 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.2 %)"
+    ],
+    "summary": "36-year-old male with Viral sinusitis, Anemia, Chronic pain. Notable findings include elevated HbA1c (6.2 %).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-26BAE28C",
+    "chief_concern": "Chronic congestive heart failure",
+    "key_diagnoses": [
+      "Chronic congestive heart failure"
+    ],
+    "recent_labs": [
+      "LVEF: 97.6 %",
+      "Creatinine: 1.2 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "Male patient (deceased) with chronic congestive heart failure. Patient required multiple telemedicine consultations and was ultimately admitted to hospice care.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-287B13D5",
+    "chief_concern": "Overlapping malignant neoplasm of colon",
+    "key_diagnoses": [
+      "Polyp of colon",
+      "Patient transfer to skilled nursing facility",
+      "Injury of knee",
+      "Injury of medial collateral ligament of knee",
+      "Overlapping malignant neoplasm of colon"
+    ],
+    "recent_labs": [],
+    "recent_imaging": [
+      "Ophthalmic examination performed"
+    ],
+    "flagged_anomalies": [],
+    "summary": "61-year-old male with Polyp of colon, Patient transfer to skilled nursing facility, Injury of knee.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-298F188E",
+    "chief_concern": "Acute viral pharyngitis",
+    "key_diagnoses": [
+      "Allergic disposition",
+      "Acute viral pharyngitis",
+      "Shellfish",
+      "Seasonal allergic rhinitis"
+    ],
+    "recent_labs": [
+      "BMI: 24.2 kg/m2",
+      "Systolic BP: 102.0 mm[Hg]",
+      "Diastolic BP: 77.0 mm[Hg]",
+      "WBC: 6.0 10*3/uL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "7-year-old female presenting for routine well-child visits and age-appropriate screening.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-30912789",
+    "chief_concern": "Malignant neoplasm of breast",
+    "key_diagnoses": [
+      "Malignant neoplasm of breast"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.8 %",
+      "BMI: 27.4 kg/m2",
+      "Diastolic BP: 91.0 mm[Hg]",
+      "Glucose: 122.3 mg/dL",
+      "Creatinine: 0.4 mg/dL"
+    ],
+    "recent_imaging": [
+      "Ophthalmic examination performed"
+    ],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.8 %)",
+      "elevated diastolic BP (91.0 mm[Hg])",
+      "elevated fasting glucose (122.3 mg/dL)"
+    ],
+    "summary": "95-year-old female with Malignant neoplasm of breast. Notable findings include elevated HbA1c (6.8 %), elevated diastolic BP (91.0 mm[Hg]), elevated fasting glucose (122.3 mg/dL).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-4F32D000",
+    "chief_concern": "Hyperlipidemia",
+    "key_diagnoses": [
+      "Hyperlipidemia",
+      "Alzheimer's disease"
+    ],
+    "recent_labs": [
+      "HbA1c: 3.2 %",
+      "BMI: 28.3 kg/m2",
+      "Systolic BP: 131.0 mm[Hg]",
+      "Diastolic BP: 82.0 mm[Hg]",
+      "Glucose: 97.1 mg/dL",
+      "Creatinine: 0.8 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "75-year-old male with Hyperlipidemia, Alzheimer's disease.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-608E8776",
+    "chief_concern": "Allergic disposition",
+    "key_diagnoses": [
+      "Perennial allergic rhinitis with seasonal variation",
+      "Allergic disposition"
+    ],
+    "recent_labs": [
+      "BMI: 27.6 kg/m2",
+      "Systolic BP: 115.0 mm[Hg]",
+      "Diastolic BP: 92.0 mm[Hg]",
+      "Total cholesterol: 119.1 mg/dL",
+      "LDL cholesterol: 36.1 mg/dL",
+      "HDL cholesterol: 60.4 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated diastolic BP (92.0 mm[Hg])"
+    ],
+    "summary": "38-year-old male with Perennial allergic rhinitis with seasonal variation, Allergic disposition. Notable findings include elevated diastolic BP (92.0 mm[Hg]).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-61D1C744",
+    "chief_concern": "Acute bronchitis",
+    "key_diagnoses": [
+      "Polyp of colon",
+      "Acute bronchitis"
+    ],
+    "recent_labs": [
+      "HbA1c: 5.8 %",
+      "BMI: 31.3 kg/m2",
+      "Systolic BP: 101.0 mm[Hg]",
+      "Diastolic BP: 90.0 mm[Hg]",
+      "Glucose: 94.1 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (5.8 %)",
+      "obese BMI (31.3 kg/m2)"
+    ],
+    "summary": "62-year-old male with Polyp of colon, Acute bronchitis. Notable findings include elevated HbA1c (5.8 %), obese BMI (31.3 kg/m2).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-668DA799",
+    "chief_concern": "Chronic congestive heart failure",
+    "key_diagnoses": [
+      "Chronic congestive heart failure"
+    ],
+    "recent_labs": [
+      "Glucose: 74.6 mg/dL",
+      "LVEF: 33.0 %",
+      "Creatinine: 1.4 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "reduced LVEF (33.0 %)",
+      "elevated creatinine (1.4 mg/dL)"
+    ],
+    "summary": "Male patient (deceased) with chronic congestive heart failure. Patient required multiple telemedicine consultations and was ultimately admitted to hospice care. Notable findings include reduced LVEF (33.0 %), elevated creatinine (1.4 mg/dL).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-75756AE7",
+    "chief_concern": "Chronic congestive heart failure",
+    "key_diagnoses": [
+      "Acute bacterial sinusitis",
+      "Chronic congestive heart failure"
+    ],
+    "recent_labs": [
+      "Glucose: 92.9 mg/dL",
+      "LVEF: 33.7 %"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "reduced LVEF (33.7 %)"
+    ],
+    "summary": "57-year-old male with chronic congestive heart failure requiring ongoing monitoring and follow-up. Notable findings include reduced LVEF (33.7 %).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-83D9AEE4",
+    "chief_concern": "Viral sinusitis",
+    "key_diagnoses": [
+      "Viral sinusitis",
+      "Chronic pain"
+    ],
+    "recent_labs": [
+      "BMI: 30.0 kg/m2",
+      "Systolic BP: 116.0 mm[Hg]",
+      "Diastolic BP: 70.0 mm[Hg]",
+      "WBC: 5.6 10*3/uL",
+      "Hemoglobin: 13.9 g/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "39-year-old male with Viral sinusitis, Chronic pain.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-85AB413F",
+    "chief_concern": "Sinusitis",
+    "key_diagnoses": [
+      "Sinusitis"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.1 %",
+      "BMI: 28.0 kg/m2",
+      "Systolic BP: 103.0 mm[Hg]",
+      "Diastolic BP: 83.0 mm[Hg]",
+      "Glucose: 88.8 mg/dL",
+      "Creatinine: 1.0 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.1 %)"
+    ],
+    "summary": "56-year-old male with Sinusitis. Notable findings include elevated HbA1c (6.1 %).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-90154516",
+    "chief_concern": "Asthma",
+    "key_diagnoses": [
+      "Asthma"
+    ],
+    "recent_labs": [
+      "BMI: 27.9 kg/m2",
+      "Systolic BP: 139.0 mm[Hg]",
+      "Diastolic BP: 75.0 mm[Hg]",
+      "Total cholesterol: 177.7 mg/dL",
+      "LDL cholesterol: 97.4 mg/dL",
+      "Triglycerides: 142.2 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "60-year-old male with Asthma.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-B9967A10",
+    "chief_concern": "Blighted ovum",
+    "key_diagnoses": [
+      "Blighted ovum"
+    ],
+    "recent_labs": [
+      "HbA1c: 5.9 %",
+      "BMI: 27.7 kg/m2",
+      "Systolic BP: 135.0 mm[Hg]",
+      "Diastolic BP: 100.0 mm[Hg]",
+      "Glucose: 95.7 mg/dL",
+      "Creatinine: 0.8 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (5.9 %)",
+      "elevated diastolic BP (100.0 mm[Hg])"
+    ],
+    "summary": "65-year-old female with recent pregnancy history including prenatal care and delivery. Notable findings include elevated HbA1c (5.9 %), elevated diastolic BP (100.0 mm[Hg]).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-C05BB077",
+    "chief_concern": "Hyperlipidemia",
+    "key_diagnoses": [
+      "Hyperlipidemia"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.2 %",
+      "BMI: 30.1 kg/m2",
+      "Systolic BP: 112.0 mm[Hg]",
+      "Diastolic BP: 65.0 mm[Hg]",
+      "Glucose: 93.7 mg/dL",
+      "Creatinine: 0.9 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.2 %)",
+      "obese BMI (30.1 kg/m2)"
+    ],
+    "summary": "57-year-old female with Hyperlipidemia. Notable findings include elevated HbA1c (6.2 %), obese BMI (30.1 kg/m2).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-E372CD23",
+    "chief_concern": "Acute bacterial sinusitis",
+    "key_diagnoses": [
+      "Acute bacterial sinusitis",
+      "Anemia"
+    ],
+    "recent_labs": [
+      "HbA1c: 6.1 %",
+      "BMI: 30.4 kg/m2",
+      "Systolic BP: 133.0 mm[Hg]",
+      "Diastolic BP: 85.0 mm[Hg]",
+      "Glucose: 72.9 mg/dL",
+      "Creatinine: 1.4 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [
+      "elevated HbA1c (6.1 %)",
+      "obese BMI (30.4 kg/m2)",
+      "elevated creatinine (1.4 mg/dL)"
+    ],
+    "summary": "44-year-old male with Acute bacterial sinusitis, Anemia. Notable findings include elevated HbA1c (6.1 %), obese BMI (30.4 kg/m2), elevated creatinine (1.4 mg/dL).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-E60DD03A",
+    "chief_concern": "Routine health maintenance",
+    "key_diagnoses": [
+      "Routine health maintenance"
+    ],
+    "recent_labs": [
+      "BMI: 25.3 kg/m2",
+      "Systolic BP: 109.0 mm[Hg]",
+      "Diastolic BP: 76.0 mm[Hg]"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "Male patient presenting for routine well-child visits and age-appropriate screening.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-F1D78EE1",
+    "chief_concern": "Essential hypertension",
+    "key_diagnoses": [
+      "Essential hypertension"
+    ],
+    "recent_labs": [
+      "Glucose: 90.1 mg/dL"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "57-year-old male with Essential hypertension.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-F7AAB98D",
+    "chief_concern": "Routine health maintenance",
+    "key_diagnoses": [
+      "Routine health maintenance"
+    ],
+    "recent_labs": [
+      "HbA1c: 5.8 %",
+      "BMI: 29.1 kg/m2",
+      "Systolic BP: 106.0 mm[Hg]",
+      "Diastolic BP: 85.0 mm[Hg]",
+      "Glucose: 86.4 mg/dL",
+      "Creatinine: 0.8 mg/dL"
+    ],
+    "recent_imaging": [
+      "Ophthalmic examination performed"
+    ],
+    "flagged_anomalies": [
+      "elevated HbA1c (5.8 %)"
+    ],
+    "summary": "52-year-old female presenting for routine health maintenance. Notable findings include elevated HbA1c (5.8 %).",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-FC72C020",
+    "chief_concern": "End-stage renal disease",
+    "key_diagnoses": [
+      "End-stage renal disease",
+      "History of renal transplant",
+      "Acute bronchitis"
+    ],
+    "recent_labs": [],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "65-year-old female (deceased) with End-stage renal disease progressing to hospice care.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  },
+  {
+    "patient_mrn": "MRN-FEA265F0",
+    "chief_concern": "Acute viral pharyngitis",
+    "key_diagnoses": [
+      "Acute viral pharyngitis"
+    ],
+    "recent_labs": [
+      "Systolic BP: 126.0 mm[Hg]",
+      "Diastolic BP: 72.0 mm[Hg]"
+    ],
+    "recent_imaging": [],
+    "flagged_anomalies": [],
+    "summary": "3-year-old male presenting for routine well-child visits and age-appropriate screening.",
+    "disclaimer": "AI-generated summary. Not a clinical decision. Must be reviewed by a qualified healthcare provider.",
+    "model": "claude-opus-4-6",
+    "cached": false
+  }
+]
