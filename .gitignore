@@ -39,3 +39,15 @@ synthea-with-dependencies.jar
 
 # Claude Code
 .claude/
+
+# Word / Office lock files
+~$*
+
+# Demo raw recording clips (only the final stitched demo_full.mp4 is committed)
+demo/*.mov
+demo/*.aac
+
+# Verify inputs are not intended for GitHub — batch files are large + ephemeral
+data/batch_*.md
+data/claude_batch_*.txt
+data/claude_input.txt
