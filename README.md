@@ -1,6 +1,16 @@
 # Clinical Data Intelligence Platform
 
+> 🏆 **3rd Place · Secure AI Hackathon 2026** (Seattle Data AI & Security · Track 3 — Human-in-the-Loop AI)
+
 AI-powered pipeline that ingests raw EHR data, normalizes it to HL7 FHIR R4, generates clinical summaries via Claude API, and surfaces a semantic search interface for clinicians — with a **human-in-the-loop review layer** so no AI-generated summary reaches a clinician's decision without explicit approval and full audit trail.
+
+## Judges' Feedback (highlights)
+
+> "Standout differentiator: the team ran their own AI-generated summaries through an independent second model for cross-verification and **published the resulting hallucination count (104 flagged claims) rather than suppressing it**. This kind of self-auditing transparency is precisely the behavior a trustworthy-AI track should reward."
+
+> "Architecture cleanly separates a pre-existing data pipeline from the hackathon-built trust layer (review queue, audit log, grounding checks, guardrails). This separation is disclosed transparently and should be credited specifically for the trust-layer contribution."
+
+> "The combination of FHIR resource grounding, reviewer-controlled state transitions, semantic search, and immutable audit history creates a practical safety architecture for clinical summarization."
 
 ## Hackathon Disclosure (Secure AI Hackathon, 2026-07-30 → 2026-08-01)
 
