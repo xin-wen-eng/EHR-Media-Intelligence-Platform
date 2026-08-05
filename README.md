@@ -130,10 +130,19 @@ uvicorn app.api.routes:app --reload --port 8000
 pytest
 ```
 
-75 tests across three suites:
-- `test_cleaning.py` — 41 tests covering date normalization, gender codes, MRN formats, duplicate detection, missing fields
-- `test_fhir.py` — 16 tests covering FHIR resource mapping, Bundle generation, validation, SQLite storage
-- `test_api.py` — 18 integration tests covering API endpoints, search quality, per-patient dedup, performance
+**161 tests across eight suites** — 75 covering the pre-existing pipeline, **86 covering the hackathon-built trust layer**:
+
+Pre-existing pipeline (75):
+- `test_cleaning.py` — 41 tests · date normalization, gender codes, MRN formats, duplicate detection, missing fields
+- `test_fhir.py` — 16 tests · FHIR resource mapping, Bundle generation, validation, SQLite storage
+- `test_api.py` — 18 tests · search, patient endpoints, dedup, performance
+
+Trust layer (86, added post-hackathon per judges' feedback):
+- `test_passwords.py` — 12 tests · PBKDF2 hash / verify round-trip, salt uniqueness, malformed-hash rejection
+- `test_pii.py` — 22 tests · MRN / name / DOB masking, name-variant redaction, FHIR bundle redaction, search-hit masking
+- `test_verify.py` — 12 tests · fact-grounding shape, substring / token / numeric matching, insufficient-data flag, counts
+- `test_review_store.py` — 23 tests · reviews CRUD, audit log filtering, session lifecycle + idle expiry, users
+- `test_auth_routes.py` — 17 tests · login / logout / 401 without token / 403 clinician-cannot-approve, PII masking defaults
 
 ## Project Structure
 

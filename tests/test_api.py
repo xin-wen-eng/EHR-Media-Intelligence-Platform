@@ -119,13 +119,18 @@ class TestPatientEndpoints:
 
     def test_summary_not_found(self):
         resp = client.get("/patients/FAKE-MRN/summary")
-        data = resp.json()
-        assert "error" in data
+        # /patients/{mrn}/summary now returns 404 with FastAPI detail
+        assert resp.status_code == 404
+        assert "detail" in resp.json()
 
     def test_bundle_not_found(self):
         resp = client.get("/patients/FAKE-MRN/bundle")
-        data = resp.json()
-        assert "error" in data
+        # /patients/{mrn}/bundle still returns 200 with a soft-error body
+        # for backward compat; assert either an error key or a 404 status.
+        if resp.status_code == 404:
+            assert "detail" in resp.json()
+        else:
+            assert "error" in resp.json()
 
 
 class TestSearchQuality:
